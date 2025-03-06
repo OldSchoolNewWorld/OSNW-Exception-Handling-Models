@@ -1,4 +1,4 @@
-﻿# Exception Handling Models
+﻿# OSNW Exception Handling Models
 
 This project is a WPF application model to test or demonstrate approaches to 
 exception handling. It includes remarks regarding the applicability of certain 
