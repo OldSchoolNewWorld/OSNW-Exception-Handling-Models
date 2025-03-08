@@ -60,13 +60,45 @@ Partial Class MainWindow
 #Region "Exception message box"
 
     ''' <summary>
-    ''' Provides a consistent appearance for messages.
+    ''' Reports an invalid call to one of the
+    ''' <c>ShowExceptionMessageBox(&lt;varies&gt;)</c> implementations.
+    ''' </summary>
+    ''' <param name="paramName">Specifies the name of the parameter that was
+    ''' invalid.</param>
+    ''' <param name="reason">Specifies the reason for the rejection.</param>
+    ''' <remarks>This is for invalid calls to
+    ''' <c>ShowExceptionMessageBox(&lt;varies&gt;)</c>, not for generic invalid
+    ''' procedure calls.</remarks>
+    Private Sub ShowExceptionArgNotice(ByVal paramName As System.String,
+                                       ByVal reason As System.String)
+
+        Dim CaptionStr As System.String = "Invalid ShowExceptionMessageBox"
+        Dim IntroDetails As System.String =
+            "An invalid exception notice was requested."
+
+        ' Construct and show the notice.
+        Dim ShownDetail As System.String = System.String.Concat(IntroDetails,
+            System.Environment.NewLine, System.Environment.NewLine, reason)
+        System.Windows.MessageBox.Show(Me, ShownDetail, CaptionStr,
+                                       System.Windows.MessageBoxButton.OK,
+                                       System.Windows.MessageBoxImage.Error)
+
+    End Sub ' ShowExceptionArgNotice
+
+    ''' <summary>
+    ''' Provides a consistent generic appearance for messages.
     ''' </summary>
     ''' <param name="captionStr">Specifies the caption to show on the 
     ''' <c>MessageBox</c>.</param>
     ''' <param name="introDetails">Specifies a summary of the exception.</param>
     ''' <param name="techDetails">Specifies detailed information about the 
     ''' exception.</param>
+    ''' <remarks>
+    ''' This is mainly intended for exceptions caught in the outer layer of the
+    ''' model. It provides high-level detail regarding where to look for
+    ''' problems. It can also be used by the inner layer if specific information
+    ''' is provided in <paramref name="techDetails"/>.
+    ''' </remarks>
     Private Sub ShowExceptionNotice(ByVal captionStr As System.String,
         ByVal introDetails As System.String, ByVal techDetails As System.String)
 
@@ -94,7 +126,7 @@ Partial Class MainWindow
     ''' cref="System.EventArgs"/> has more than 30 derived types that may
     ''' provide even more specific information. See <see
     ''' cref="ShowExceptionMessageBox(System.Exception, Object,
-    ''' System.EventArgs"/> for information common across exception and event
+    ''' System.EventArgs)"/> for information common across exception and event
     ''' types.
     ''' </remarks>
     Private Sub ShowExceptionMessageBox(
@@ -103,18 +135,18 @@ Partial Class MainWindow
         ByVal sender As Object,
         ByVal e As System.Windows.RoutedEventArgs)
 
-
-
         ' Argument checking.
-        If caughtBy Is Nothing Then
-            'xxxxxxxxxxxxxxxx
-        End If
         If caughtEx Is Nothing Then
-            'xxxxxxxxxxxxxxx
+            Me.ShowExceptionArgNotice(NameOf(caughtEx),
+                $"'{NameOf(caughtEx)}' cannot be 'Nothing'/'Null'.")
+            Exit Sub ' Early exit.
         End If
-
-
-
+        Dim CaughtByName As System.String = If(caughtBy Is Nothing,
+            $"Unspecified '{NameOf(caughtBy)}'", caughtBy.Name)
+        Dim SenderName As System.String = If(sender Is Nothing,
+            $"Unspecified '{NameOf(sender)}'", sender.ToString)
+        Dim EText As System.String = If(e Is Nothing,
+            "Unspecified RoutedEventArgs", e.RoutedEvent.ToString)
 
         ' Unique information that can be examined to determine the cause of an
         ' exception and where it occurred.
@@ -141,7 +173,6 @@ Partial Class MainWindow
             caughtEx.GetBaseException
 
         ' Gather information of interest.
-        Dim CaughtByName As System.String = caughtBy.Name
         Dim IntroDetails As System.String =
             $"An exception was caught in '{CaughtByName}'" &
             $", with sender='{sender}'" & $" and message '{caughtEx.Message}'."
@@ -175,7 +206,7 @@ Partial Class MainWindow
     ''' A <see cref="System.ComponentModel.CancelEventArgs"/> contains
     ''' information that a <see cref="System.EventArgs"/> does not have. See
     ''' <see cref="ShowExceptionMessageBox(System.Exception, Object,
-    ''' System.EventArgs"/> for information common across exception and event
+    ''' System.EventArgs)"/> for information common across exception and event
     ''' types.
     ''' </remarks>
     Private Sub ShowExceptionMessageBox(
@@ -184,15 +215,18 @@ Partial Class MainWindow
         ByVal sender As Object,
         ByVal e As System.ComponentModel.CancelEventArgs)
 
-
         ' Argument checking.
-        If caughtBy Is Nothing Then
-            'xxxxxxxxxxxxxxxx
-        End If
         If caughtEx Is Nothing Then
-            'xxxxxxxxxxxxxxx
+            Me.ShowExceptionArgNotice(NameOf(caughtEx),
+                $"'{NameOf(caughtEx)}' cannot be 'Nothing'/'Null'.")
+            Exit Sub ' Early exit.
         End If
-
+        Dim CaughtByName As System.String = If(caughtBy Is Nothing,
+            $"Unspecified '{NameOf(caughtBy)}'", caughtBy.Name)
+        Dim SenderName As System.String = If(sender Is Nothing,
+            $"Unspecified '{NameOf(sender)}'", sender.ToString)
+        Dim EText As System.String = If(e Is Nothing,
+            "Unspecified CancelEventArgs", e.ToString)
 
         ' Unique information that can be examined to determine the cause of an
         ' exception and where it occurred.
@@ -202,7 +236,6 @@ Partial Class MainWindow
 
         ' Common information that can be examined to determine the cause of an
         ' exception and where it occurred.
-        Dim CaughtByName As System.String = caughtBy.Name
         Dim CaughtExTargetSite As System.Reflection.MethodBase =
             caughtEx.TargetSite
         Dim CaughtExBaseException As System.Exception =
@@ -246,15 +279,18 @@ Partial Class MainWindow
         ByVal caughtEx As System.Exception,
         ByVal sender As Object, ByVal e As System.EventArgs)
 
-
         ' Argument checking.
-        If caughtBy Is Nothing Then
-            'xxxxxxxxxxxxxxxx
-        End If
         If caughtEx Is Nothing Then
-            'xxxxxxxxxxxxxxx
+            Me.ShowExceptionArgNotice(NameOf(caughtEx),
+                $"'{NameOf(caughtEx)}' cannot be 'Nothing'/'Null'.")
+            Exit Sub ' Early exit.
         End If
-
+        Dim CaughtByName As System.String = If(caughtBy Is Nothing,
+            $"Unspecified '{NameOf(caughtBy)}'", caughtBy.Name)
+        Dim SenderName As System.String = If(sender Is Nothing,
+            $"Unspecified '{NameOf(sender)}'", sender.ToString)
+        Dim EText As System.String = If(e Is Nothing,
+            "Unspecified EventArgs", e.ToString)
 
         ' The following are examples of information that can be examined to
         ' determine the cause of an exception and where it occurred.
@@ -315,7 +351,6 @@ Partial Class MainWindow
         Dim ETypeToString As System.String = e.ToString
 
         ' Gather information of interest.
-        Dim CaughtByName As System.String = caughtBy.Name
         Dim IntroDetails As System.String =
             $"An exception was caught in '{CaughtByName}'" &
             $", with sender='{sender}'" & $" and message '{caughtEx.Message}'."
@@ -356,22 +391,17 @@ Partial Class MainWindow
         ByVal caughtBy As System.Reflection.MethodBase,
         ByVal caughtEx As System.Exception)
 
-
         ' Argument checking.
-        If caughtBy Is Nothing Then
-            'xxxxxxxxxxxxxxxx
-        End If
         If caughtEx Is Nothing Then
-            'xxxxxxxxxxxxxxx
+            Me.ShowExceptionArgNotice(NameOf(caughtEx),
+                $"'{NameOf(caughtEx)}' cannot be 'Nothing'/'Null'.")
+            Exit Sub ' Early exit.
         End If
-
-
-
-
+        Dim CaughtByName As System.String = If(caughtBy Is Nothing,
+            $"Unspecified '{NameOf(caughtBy)}'", caughtBy.Name)
 
         ' Information that can be examined to determine the cause of an
         ' exception and where it occurred.
-        Dim CaughtByName As System.String = caughtBy.Name
         Dim CaughtExTargetSite As System.Reflection.MethodBase =
             caughtEx.TargetSite
         Dim CaughtExBaseException As System.Exception =
