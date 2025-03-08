@@ -36,3 +36,6 @@ can easily be stepped over while debugging. Due to the cost of setting up a
 subroutine call, calls to even small subroutines should probably be avoided if 
 that is likely to happen in a large loop. When expected to be used in a loop, 
 it may be better to bring the code into the calling routine.
+
+# Exception Handling
+

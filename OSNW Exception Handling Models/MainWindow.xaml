@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="OSNW Exception Handling Models" Height="200" Width="400">
     <DockPanel x:Name="MainDockPanel" LastChildFill="False">
+        <DockPanel x:Name="TestsDockPanel" DockPanel.Dock="Top" Margin="3"
+                   LastChildFill="False">
+            <Button x:Name="Test1Button" DockPanel.Dock="Left"
+                    Margin="3" Content="Test _1"/>
+            <Button x:Name="Test2Button" DockPanel.Dock="Left"
+                    Margin="3" Content="Test _2"/>
+            <Button x:Name="Test3Button" DockPanel.Dock="Left"
+                    Margin="3" Content="Test _3"/>
+        </DockPanel>
         <DockPanel x:Name="ButtonsDockPanel" DockPanel.Dock="Bottom" Margin="3"
                    LastChildFill="False">
             <Button x:Name="CloseButton" DockPanel.Dock="Right" Margin="3"

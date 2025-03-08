@@ -2,9 +2,60 @@
 Option Strict On
 Option Compare Binary
 Option Infer Off
+Imports System.Reflection
 
 Partial Class MainWindow
     ' DEV: These routines are intended as part of the model.
+
+#Region "Basic sub/function model"
+
+    ' Private Sub SomeSub()
+    '     ' DEV: The outer protective wrapper goes here. It ensures that
+    '     ' unhandled exceptions, either local or in a subsequent call, are
+    '     ' captured.
+    '     Try
+    '         ' DEV: The major intended operation goes here.
+    ' 
+    '         ' DEV: Expected-safe operations go here.
+    '         ' Argument checking.
+    ' 
+    '         ' DEV: An inner protective wrapper goes here. Exceptions can be
+    '         ' captured and dealt with where there is a better indication of
+    '         ' where things went wrong. Multiple risky operations can be
+    '         ' wrapped separately to further limit the scope of where a problem
+    '         ' occured or to have different reactions in place.
+    '         Try
+    '             ' DEV: A risky operation goes here.
+    ' 
+    '         Catch CaughtEx As System.Exception
+    '             ' BC30030 - Try must have at least one 'Catch' or a 'Finally'.
+    ' 
+    '             ' Respond to an exception.
+    '             Dim CaughtBy As System.Reflection.MethodBase =
+    '                 System.Reflection.MethodBase.GetCurrentMethod
+    '             Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+    ' 
+    '             ' Optional rethrow of the caught exception.
+    '             'Throw
+    ' 
+    '         Finally
+    '             ' BC30030 - Try must have at least one 'Catch' or a 'Finally'.
+    '
+    '             ' DEV: Do any clean-ups or back-outs here.
+    '
+    '         End Try
+    ' 
+    '         ' DEV: Expected-safe operations go here.
+    ' 
+    '     Catch CaughtEx As System.Exception
+    '         ' Report the unexpected exception.
+    '         Dim CaughtBy As System.Reflection.MethodBase =
+    '             System.Reflection.MethodBase.GetCurrentMethod()
+    '         Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+    '     End Try
+    ' End Sub
+
+#End Region ' "Basic sub/function model"
 
 #Region "Exception message box"
 
@@ -46,8 +97,24 @@ Partial Class MainWindow
     ''' System.EventArgs"/> for information common across exception and event
     ''' types.
     ''' </remarks>
-    Private Sub ShowExceptionMessageBox(ByVal caughtEx As System.Exception,
-        ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs)
+    Private Sub ShowExceptionMessageBox(
+        ByVal caughtBy As System.Reflection.MethodBase,
+        ByVal caughtEx As System.Exception,
+        ByVal sender As Object,
+        ByVal e As System.Windows.RoutedEventArgs)
+
+
+
+        ' Argument checking.
+        If caughtBy Is Nothing Then
+            'xxxxxxxxxxxxxxxx
+        End If
+        If caughtEx Is Nothing Then
+            'xxxxxxxxxxxxxxx
+        End If
+
+
+
 
         ' Unique information that can be examined to determine the cause of an
         ' exception and where it occurred.
@@ -74,8 +141,9 @@ Partial Class MainWindow
             caughtEx.GetBaseException
 
         ' Gather information of interest.
+        Dim CaughtByName As System.String = caughtBy.Name
         Dim IntroDetails As System.String =
-            $"An exception was caught in '{CaughtExTargetSite}'" &
+            $"An exception was caught in '{CaughtByName}'" &
             $", with sender='{sender}'" & $" and message '{caughtEx.Message}'."
         Dim TechDetails As System.String =
             $"The initial cause is {CaughtExBaseException}."
@@ -110,9 +178,21 @@ Partial Class MainWindow
     ''' System.EventArgs"/> for information common across exception and event
     ''' types.
     ''' </remarks>
-    Private Sub ShowExceptionMessageBox(ByVal caughtEx As System.Exception,
+    Private Sub ShowExceptionMessageBox(
+        ByVal caughtBy As System.Reflection.MethodBase,
+        ByVal caughtEx As System.Exception,
         ByVal sender As Object,
         ByVal e As System.ComponentModel.CancelEventArgs)
+
+
+        ' Argument checking.
+        If caughtBy Is Nothing Then
+            'xxxxxxxxxxxxxxxx
+        End If
+        If caughtEx Is Nothing Then
+            'xxxxxxxxxxxxxxx
+        End If
+
 
         ' Unique information that can be examined to determine the cause of an
         ' exception and where it occurred.
@@ -122,6 +202,7 @@ Partial Class MainWindow
 
         ' Common information that can be examined to determine the cause of an
         ' exception and where it occurred.
+        Dim CaughtByName As System.String = caughtBy.Name
         Dim CaughtExTargetSite As System.Reflection.MethodBase =
             caughtEx.TargetSite
         Dim CaughtExBaseException As System.Exception =
@@ -129,7 +210,7 @@ Partial Class MainWindow
 
         ' Gather information of interest.
         Dim IntroDetails As System.String =
-            $"An exception was caught in '{CaughtExTargetSite}'" &
+            $"An exception was caught in '{CaughtByName}'" &
             $", with sender='{sender}'" & $" and message '{caughtEx.Message}'."
         Dim TechDetails As System.String =
             $"The initial cause is {CaughtExBaseException}."
@@ -160,8 +241,20 @@ Partial Class MainWindow
     ''' <remarks>
     ''' <see cref="System.EventArgs"/> is a base class for other event types.
     ''' </remarks>
-    Private Sub ShowExceptionMessageBox(ByVal caughtEx As System.Exception,
+    Private Sub ShowExceptionMessageBox(
+        ByVal caughtBy As System.Reflection.MethodBase,
+        ByVal caughtEx As System.Exception,
         ByVal sender As Object, ByVal e As System.EventArgs)
+
+
+        ' Argument checking.
+        If caughtBy Is Nothing Then
+            'xxxxxxxxxxxxxxxx
+        End If
+        If caughtEx Is Nothing Then
+            'xxxxxxxxxxxxxxx
+        End If
+
 
         ' The following are examples of information that can be examined to
         ' determine the cause of an exception and where it occurred.
@@ -222,8 +315,9 @@ Partial Class MainWindow
         Dim ETypeToString As System.String = e.ToString
 
         ' Gather information of interest.
+        Dim CaughtByName As System.String = caughtBy.Name
         Dim IntroDetails As System.String =
-            $"An exception was caught in '{CaughtExTargetSite}'" &
+            $"An exception was caught in '{CaughtByName}'" &
             $", with sender='{sender}'" & $" and message '{caughtEx.Message}'."
         Dim TechDetails As System.String =
             $"The initial cause is {CaughtExBaseException}."
@@ -241,6 +335,15 @@ Partial Class MainWindow
 
     End Sub ' ShowExceptionMessageBox
 
+
+
+
+
+
+
+
+
+
     ''' <summary>
     ''' Provides a notice of an unexpected exception.
     ''' </summary>
@@ -248,52 +351,27 @@ Partial Class MainWindow
     ''' exception occurred.</param>
     ''' <param name="caughtEx">Provides the unexpected exception.</param>
     ''' <remarks>
-    ''' <example> This sample shows how to use 
-    ''' <c>ShowExceptionMessageBox(System.Exception)</c>.
-    ''' <code>
-    ''' Private Sub SomeSub()
-    '''     ' DEV: The outer protective wrapper goes here. It ensures that
-    '''     ' exceptions, either local or in a subsequent call, are captured.
-    '''     Try
-    '''         ' DEV: The major intended operation goes here.
-    '''
-    '''         ' DEV: Expected-safe operations go here.
-    '''
-    '''         ' DEV: The inner protective wrapper goes here. Exceptions can be
-    '''         ' captured and dealt with where there is a better indication of
-    '''         ' what went wrong. Multiple risky operations can be wrapped
-    '''         ' separately to further limit the scope of where a problem occured
-    '''         ' or to have different reactions in place.
-    '''         Try
-    '''             '''      DEV: A risky operation goes here.
-    '''
-    '''             '''      BC30030 - Try must have at least one 'Catch' or a 'Finally'.
-    '''             '''     Catch CaughtEx As System.Exception
-    '''
-    '''             '''         ' Respond to an exception.
-    '''
-    '''             '''         ' Optional rethrow of the caught exception
-    '''             '''         'Throw
-    '''
-    '''             '''         ' BC30030 - Try must have at least one 'Catch' or a 'Finally'.
-    '''             '''     Finally
-    '''             '''         ' DEV: Do any clean-ups or back-outs here.
-    '''         End Try
-    '''
-    '''         ' DEV: Expected-safe operations go here.
-    '''
-    '''     Catch CaughtEx As System.Exception
-    '''         ' Report the unexpected exception.
-    '''         Me.ShowExceptionMessageBox(CaughtEx)
-    '''     End Try
-    ''' End Sub
-    ''' </code>
-    ''' </example>
     ''' </remarks>
-    Private Sub ShowExceptionMessageBox(ByVal caughtEx As System.Exception)
+    Private Sub ShowExceptionMessageBox(
+        ByVal caughtBy As System.Reflection.MethodBase,
+        ByVal caughtEx As System.Exception)
+
+
+        ' Argument checking.
+        If caughtBy Is Nothing Then
+            'xxxxxxxxxxxxxxxx
+        End If
+        If caughtEx Is Nothing Then
+            'xxxxxxxxxxxxxxx
+        End If
+
+
+
+
 
         ' Information that can be examined to determine the cause of an
         ' exception and where it occurred.
+        Dim CaughtByName As System.String = caughtBy.Name
         Dim CaughtExTargetSite As System.Reflection.MethodBase =
             caughtEx.TargetSite
         Dim CaughtExBaseException As System.Exception =
@@ -301,7 +379,7 @@ Partial Class MainWindow
 
         ' Gather information of interest.
         Dim IntroDetails As System.String =
-            $"'{CaughtExTargetSite}' failed with message '{caughtEx.Message}'."
+            $"'{CaughtByName}' failed with message '{caughtEx.Message}'."
         Dim TechDetails As System.String =
             $"The initial cause is {CaughtExBaseException}."
 
