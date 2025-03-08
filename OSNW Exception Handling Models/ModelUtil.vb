@@ -370,15 +370,6 @@ Partial Class MainWindow
 
     End Sub ' ShowExceptionMessageBox
 
-
-
-
-
-
-
-
-
-
     ''' <summary>
     ''' Provides a notice of an unexpected exception.
     ''' </summary>
