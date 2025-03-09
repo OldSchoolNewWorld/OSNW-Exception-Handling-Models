@@ -12,11 +12,11 @@ code elements. Fully qualified references used in much of the code, including
 the use of "Me".
 
 Some of the XML comments are targeted at developers and are left in place so 
-that they are visible to IntelliSense while creating a new application/assembly.
-Items marked "DEV:" are intended for a developer using the model, not for
-consuming assemblies that use the dialog. They can be left in place, deleted,
-suppressed by adding another apostrophe, or suppressed from output by the
-compiler via "Generate XML documentation file".
+that they are visible to IntelliSense while creating a new 
+application/assembly. Items marked "DEV:" are intended for a developer using 
+the model, not for consuming assemblies that use the dialog. They can be left 
+in place, deleted, suppressed by adding another apostrophe, or suppressed from 
+output by the compiler via "Generate XML documentation file".
 
 External research references are marked "REF:". Those are links to research 
 done while looking for code samples or detailed explanations of properties and 
@@ -54,6 +54,7 @@ the real purpose for which the subroutine or function was created.
 In some cases, the outer layer may provide enough information to lead the 
 developer to the soucre of a problem. In other cases, the inner layer may need 
 to be modified to perform better isolation and/or analysis of the problem.
+
 ```
     Private Sub SomeSub()
         Try
@@ -83,7 +84,7 @@ from causing an exception. That process should probably be omitted from the
 inner protective wrapper.
 
 Some event and exception types provide details specific to those  types. Those 
-details can be passed to a custom version of `ShowExceptionMessageBox()` so
+details can be passed to a custom version of `ShowExceptionMessageBox()` so 
 that they can included in the notification.
 
 Only use an inner protective layer if there will be either a `Catch` or 
@@ -178,14 +179,17 @@ This is the full generic model of the approach used in the sample code.
 ### Notification
 
 The model includes several versions of `ShowExceptionMessageBox()`. Each 
-version takes different arguments.
+version has different parameters; they align to the standard event handlers. 
+Sample implementations are included for some typical events that are common to 
+most WPF applications.
 
 Additional specialized versions could be created that dig into data provided by 
 an event that occurred or by the type of `System.Exception` that was thrown. 
 That information includes the `System.Exception`, `sender`, various derived 
 versions of `System.EventArgs` (`System.Windows.RoutedEventArgs`, 
 `System.ComponentModel.CancelEventArgs`, etc.), or arguments passed to a 
-routine.
+routine. Some of the sample code points out values that may be of interest in 
+specific cases.
 
 `System.Exception.Data` can be updated when an exception is caught. That can be 
 used to identify specific conditions under which an exception is thrown. 
