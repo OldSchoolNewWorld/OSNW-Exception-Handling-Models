@@ -195,5 +195,5 @@ specific cases.
 'CaughtEx.Data. can be updated when an exception is caught, to identify 
 specific conditions under which an exception is thrown. Examples of that would 
 include edge cases and incompatible states. Conditional breakpoints can then be 
-used to only stop a debug session at the breakpoint of interest. See 
+used to only stop a debug session at the argument value(s) of interest. See 
 [System.Exception.Data](https://learn.microsoft.com/en-us/dotnet/api/system.exception.data?view=net-9.0).
