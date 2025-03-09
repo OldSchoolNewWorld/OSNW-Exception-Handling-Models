@@ -88,8 +88,9 @@ details can be passed to a custom version of `ShowExceptionMessageBox()` so
 that they can included in the notification.
 
 Only use an inner protective layer if there will be either a `Catch` or 
-`Finally` clause. The BC30030 error can be avoided by adding the `Catch` or 
-`Finally` statement with no active code inside.
+`Finally` clause. The BC30030 error can be avoided by leaving an unused clause 
+in place, but with no active code inside. As long as one is there, the other 
+can be omitted.
 
 ```
     ' DEV: Expected-safe operations go here.
@@ -191,6 +192,8 @@ versions of `System.EventArgs` (`System.Windows.RoutedEventArgs`,
 routine. Some of the sample code points out values that may be of interest in 
 specific cases.
 
-`System.Exception.Data` can be updated when an exception is caught. That can be 
-used to identify specific conditions under which an exception is thrown. 
-Examples of that would include edge cases and incompatible states.
+'CaughtEx.Data. can be updated when an exception is caught, to identify 
+specific conditions under which an exception is thrown. Examples of that would 
+include edge cases and incompatible states. Conditional breakpoints can then be 
+used to only stop a debug session at the breakpoint of interest. See 
+[System.Exception.Data](https://learn.microsoft.com/en-us/dotnet/api/system.exception.data?view=net-9.0).
