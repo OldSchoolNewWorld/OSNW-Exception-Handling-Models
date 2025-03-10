@@ -52,7 +52,7 @@ an unexpected, and unhandled, exception. It is just a protective wrapper for
 the real purpose for which the subroutine or function was created.
 
 In some cases, the outer layer may provide enough information to lead the 
-developer to the soucre of a problem. In other cases, the inner layer may need 
+developer to the source of a problem. In other cases, the inner layer may need 
 to be modified to perform better isolation and/or analysis of the problem.
 
 ```
