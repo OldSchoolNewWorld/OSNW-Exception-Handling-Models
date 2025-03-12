@@ -1,0 +1,25 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OSNW_Exception_Handling_Models"
+        mc:Ignorable="d"
+        Title="OSNW Exception Handling Models" Height="200" Width="400">
+    <DockPanel x:Name="MainDockPanel" LastChildFill="False">
+        <DockPanel x:Name="TestsDockPanel" DockPanel.Dock="Top" Margin="3"
+                   LastChildFill="False">
+            <Button x:Name="OuterButton" DockPanel.Dock="Left"
+                    Margin="3" Content="Outer"/>
+            <Button x:Name="InnerButton" DockPanel.Dock="Left"
+                    Margin="3" Content="Inner"/>
+            <Button x:Name="DiceButton" DockPanel.Dock="Left"
+                    Margin="3" Content="Dice"/>
+        </DockPanel>
+        <DockPanel x:Name="ButtonsDockPanel" DockPanel.Dock="Bottom" Margin="3"
+                   LastChildFill="False">
+            <Button x:Name="CloseButton" DockPanel.Dock="Right" Margin="3"
+                    IsCancel="False">C_lose</Button>
+        </DockPanel>
+    </DockPanel>
+</Window>
