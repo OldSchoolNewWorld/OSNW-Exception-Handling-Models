@@ -5,7 +5,8 @@
     <TargetFramework>net8.0-windows8.0</TargetFramework>
     <RootNamespace>OSNW_Exception_Handling_Models</RootNamespace>
     <UseWPF>true</UseWPF>
-    <Title>OSNW Exception Handling Models</Title>
+    <PackageId>OSNW.ExceptionHandlingModelsWPF</PackageId>
+    <Title>OSNW Exception Handling Models WPF</Title>
     <Version>0.1.0</Version>
     <Authors>OldSchoolNewWorld</Authors>
     <Description>A WPF application to demonstrate approaches to exception handling.</Description>
@@ -13,7 +14,7 @@
     <PackageProjectUrl>https://github.com/OldSchoolNewWorld/OSNW-Exception-Handling-Models</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/OldSchoolNewWorld/OSNW-Exception-Handling-Models</RepositoryUrl>
-    <PackageTags>Exception handling WPF VB VB.NET</PackageTags>
+    <PackageTags>exception handling WPF VB.NET Visual Basic</PackageTags>
     <PackageReleaseNotes>Initial commit for development version.</PackageReleaseNotes>
   </PropertyGroup>
 
