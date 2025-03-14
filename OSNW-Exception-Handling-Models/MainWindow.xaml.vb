@@ -233,24 +233,12 @@ Class MainWindow
                 Me.ProcessDice(3, 7)
             Catch CaughtEx As System.Exception
 
-                ' Detect any reported Data elements.
-                Dim FoundData As System.Boolean = False
-                Dim DataMessage As System.String = String.Empty
-                If CaughtEx.Data.Count > 0 Then
-                    FoundData = True
-                    For I As System.Int32 = 0 To CaughtEx.Data.Count - 1
-                        If I > 0 Then
-                            DataMessage = String.Concat(DataMessage, ", ")
-                        End If
-                        DataMessage = String.Concat(DataMessage,
-                            $"{CaughtEx.Data.Keys(I)}" &
-                            $"={CaughtEx.Data.Values(I)}")
-                    Next
-                End If
-
                 Dim CaughtBy As System.Reflection.MethodBase =
                     System.Reflection.MethodBase.GetCurrentMethod
-                If FoundData Then
+                If CaughtEx.Data.Count > 0 Then
+                    ' Data is included.
+                    Dim DataMessage As System.String =
+                        MainWindow.GetDataMessage(CaughtEx)
                     Me.ShowExceptionMessageBox(CaughtBy, CaughtEx, DataMessage)
                 Else
                     Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)

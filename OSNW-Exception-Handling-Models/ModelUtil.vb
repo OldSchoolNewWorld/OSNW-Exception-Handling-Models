@@ -62,6 +62,35 @@ Partial Class MainWindow
 #Region "Exception message box"
 
     ''' <summary>
+    ''' Extracts the <c>Data</c> entries from the specified <c>Exception</c>.
+    ''' </summary>
+    ''' <param name="caughtEx">Specifies the <c>Exception</c> from which to
+    ''' extract the <c>Data</c> pairs.</param>
+    ''' <returns>A sting containing the data.</returns>
+    ''' <remarks>
+    ''' DEV: This can be modified to report the data in any chosen form.
+    ''' </remarks>
+    Private Shared Function GetDataMessage(ByVal caughtEx As System.Exception) _
+        As System.String
+
+        Dim IsFirstDataPair As System.Boolean = True
+        Dim SBuilder As New System.Text.StringBuilder
+        For Each OneDictionaryEntry As _
+            System.Collections.DictionaryEntry In caughtEx.Data
+
+            If Not IsFirstDataPair Then
+                SBuilder.Append("; ")
+            End If
+            IsFirstDataPair = False
+
+            SBuilder.Append($"{OneDictionaryEntry.Key}")
+            SBuilder.Append($"={OneDictionaryEntry.Value}")
+
+        Next
+        Return SBuilder.ToString
+    End Function ' GetDataMessage
+
+    ''' <summary>
     ''' Reports an invalid call to one of the
     ''' <c>ShowExceptionMessageBox(&lt;varies&gt;)</c> implementations.
     ''' </summary>
