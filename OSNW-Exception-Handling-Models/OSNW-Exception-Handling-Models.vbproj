@@ -16,6 +16,7 @@
     <RepositoryUrl>https://github.com/OldSchoolNewWorld/OSNW-Exception-Handling-Models</RepositoryUrl>
     <PackageTags>exception handling WPF VB.NET Visual Basic</PackageTags>
     <PackageReleaseNotes>Initial commit for development version.</PackageReleaseNotes>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
