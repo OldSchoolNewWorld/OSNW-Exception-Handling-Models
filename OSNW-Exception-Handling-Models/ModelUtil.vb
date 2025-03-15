@@ -9,6 +9,10 @@ Partial Class MainWindow
     ' DEV: These routines are intended as part of the model.
 
 #Region "Basic sub/function model"
+    ' DEV: This entire region can be copied into a new project as a supply of
+    ' code that can be copied with that project. The copy can be reworked as
+    ' chosen, or used to create specialized versions, then used during
+    ' development. Once no longer needed, the entire region can be deleted.
 
     ' Private Sub SomeSub()
     '     ' DEV: The outer protective wrapper goes here. It ensures that
@@ -60,7 +64,7 @@ Partial Class MainWindow
 #End Region ' "Basic sub/function model"
 
 #Region "Extractable data"
-    ' DEV: This entire region can be copied into a new project a a supply of
+    ' DEV: This entire region can be copied into a new project as a supply of
     ' code that can be copied into event- and exception-handlers. Once no longer
     ' needed, the entire region can be deleted.
 
