@@ -273,8 +273,9 @@ Partial Class MainWindow
                                        ByVal reason As System.String)
 
         Dim CaptionStr As System.String = "Invalid ShowExceptionMessageBox"
-        Dim IntroDetails As System.String =
-            "An invalid exception notice was requested."
+        Dim IntroDetails As System.String = System.String.Concat(
+            "An invalid exception notice was requested.",
+            $" There is a problem with '{paramName}'.")
 
         ' Construct and show the notice.
         Dim ShownDetail As System.String = System.String.Concat(IntroDetails,
