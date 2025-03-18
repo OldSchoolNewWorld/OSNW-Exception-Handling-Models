@@ -3,6 +3,7 @@ Option Strict On
 Option Compare Binary
 Option Infer Off
 
+
 Imports System.Reflection
 
 Partial Class MainWindow
@@ -10,7 +11,7 @@ Partial Class MainWindow
 
 #Region "Basic sub/function model"
     ' DEV: This entire region can be copied into a new project as a supply of
-    ' code that can be copied with that project. The copy can be reworked as
+    ' code that can be copied within that project. The copy can be reworked as
     ' chosen, or used to create specialized versions, then used during
     ' development. Once no longer needed, the entire region can be deleted.
 
@@ -65,8 +66,13 @@ Partial Class MainWindow
 
 #Region "Extractable data"
     ' DEV: This entire region can be copied into a new project as a supply of
-    ' code that can be copied into event- and exception-handlers. Once no longer
-    ' needed, the entire region can be deleted.
+    ' code that can be copied into event- and exception-handlers. None of these
+    ' routines are intended to be called directly. They are used to separate the
+    ' variable assignments based on where they get their data.
+    ' The left-side variable assignments can be left as shown, using the
+    ' assigned variable in subsequent code or the right-side of the assignment
+    ' can be pasted directly into the new code. When no longer needed, the
+    ' entire region can be deleted.
 
     ''' <summary>
     ''' Gathers examples of extractable information in System.Exception in one
@@ -90,7 +96,7 @@ Partial Class MainWindow
         ' added to help identify edge cases, etc. that can cause a problem.
         Dim CaughtExData As System.Collections.IDictionary = caughtEx.Data
 
-        ' Structured - Another exception. Returns the Exception that is the root
+        ' Recursive - another exception. Returns the Exception that is the root
         ' cause of one or more subsequent exceptions.
         Dim CaughtExBaseException As System.Exception =
             caughtEx.GetBaseException
@@ -104,7 +110,7 @@ Partial Class MainWindow
         ' Gets the full name of the type of exception.
         Dim CaughtExTypeFullname As System.String = CaughtExType.FullName
 
-        ' Structured - Another exception. Gets the Exception instance that
+        ' Recursive - another exception. Gets the Exception instance that
         ' caused the current exception.
         Dim CaughtExInnerException As System.Exception = caughtEx.InnerException
 
@@ -138,16 +144,18 @@ Partial Class MainWindow
     ''' a local variable containing one property of <paramref name="e"/>. That
     ''' variable can then be referenced by local code or inspected while
     ''' debugging.
+    ''' <para>
     ''' <see cref="System.EventArgs"/> is a base class for other event types.
     ''' <see cref="System.EventArgs"/> has more than 30 derived types that may
-    ''' provide even more specific information.
+    ''' provide additional specific information of interest.
+    ''' </para>
     ''' </remarks>
-    Private Sub ExtractExtractEventArgs(ByVal e As System.EventArgs)
+    Private Sub ExtractEventArgs(ByVal e As System.EventArgs)
 
-        ' The following are examples of information in System.EventArgs that
-        ' can be examined to determine the cause of an exception.
+        ' The following are examples of information in System.EventArgs that can
+        ' be examined to determine the conditions that caused an exception.
 
-        ' Structured. Gets the Type of the current instance.
+        ' Gets the Type of the current instance.
         Dim EType As Type = e.GetType
 
         ' Gets the name of the current member.
@@ -172,15 +180,19 @@ Partial Class MainWindow
     ''' a local variable containing one property of <paramref name="e"/>. That
     ''' variable can then be referenced by local code or inspected while
     ''' debugging.
+    ''' <para>
     ''' A <see cref="System.Windows.RoutedEventArgs"/> contains information that
     ''' a <see cref="System.EventArgs"/> does not have.
-    ''' <see cref="System.Windows.RoutedEventArgs"/> has many derived types.
+    ''' <see cref="System.Windows.RoutedEventArgs"/> has many derived types that
+    ''' may provide additional specific information of interest.
+    ''' </para>
     ''' </remarks>
     Private Sub ExtractRoutedEventArgs(
         ByVal e As System.Windows.RoutedEventArgs)
 
-        ' Unique information in System.Windows.RoutedEventArgs that can be
-        ' examined to determine the cause of an exception and where it occurred.
+        ' The following are examples of unique information in
+        ' System.Windows.RoutedEventArgs that can be examined to determine the
+        ' conditions that caused an exception.
 
         ' Gets or sets a value that indicates the present state of the event
         ' handling for a routed event as it travels the route.
@@ -209,8 +221,12 @@ Partial Class MainWindow
     ''' a local variable containing one property of <paramref name="e"/>. That
     ''' variable can then be referenced by local code or inspected while
     ''' debugging.
+    ''' <para>
     ''' A <see cref="System.ComponentModel.CancelEventArgs"/> contains
     ''' information that a <see cref="System.EventArgs"/> does not have.
+    ''' <see cref="System.ComponentModel.CancelEventArgs"/> has many derived
+    ''' types that may provide additional specific information of interest.
+    ''' </para>
     ''' </remarks>
     Private Sub ExtractCancelEventArgs(ByVal e As System.ComponentModel.CancelEventArgs)
 
@@ -280,9 +296,21 @@ Partial Class MainWindow
         ' Construct and show the notice.
         Dim ShownDetail As System.String = System.String.Concat(IntroDetails,
             System.Environment.NewLine, System.Environment.NewLine, reason)
-        System.Windows.MessageBox.Show(Me, ShownDetail, CaptionStr,
-                                       System.Windows.MessageBoxButton.OK,
-                                       System.Windows.MessageBoxImage.Error)
+        If Me.Owner Is Nothing Then
+            ' Show without Me.Owner.
+            ' REF: https://learn.microsoft.com/en-us/dotnet/api/system.windows.messagebox.show?view=windowsdesktop-9.0#remarks
+            ' Use an overload of the Show method, which enables you to specify
+            ' an owner window. Otherwise, the message box is owned by the window
+            ' that is currently active.
+            System.Windows.MessageBox.Show(ShownDetail, CaptionStr,
+                                           System.Windows.MessageBoxButton.OK,
+                                           System.Windows.MessageBoxImage.Error)
+        Else
+            ' Use Me.Owner.
+            System.Windows.MessageBox.Show(Me.Owner, ShownDetail, CaptionStr,
+                                           System.Windows.MessageBoxButton.OK,
+                                           System.Windows.MessageBoxImage.Error)
+        End If
 
     End Sub ' ShowExceptionArgNotice
 
@@ -306,9 +334,21 @@ Partial Class MainWindow
         ' Construct and show the notice.
         Dim ShownDetail As System.String = System.String.Concat(introDetails,
             System.Environment.NewLine, System.Environment.NewLine, techDetails)
-        System.Windows.MessageBox.Show(Me, ShownDetail, captionStr,
-                                       System.Windows.MessageBoxButton.OK,
-                                       System.Windows.MessageBoxImage.Error)
+        If Me.Owner Is Nothing Then
+            ' Show without Me.Owner.
+            ' REF: https://learn.microsoft.com/en-us/dotnet/api/system.windows.messagebox.show?view=windowsdesktop-9.0#remarks
+            ' Use an overload of the Show method, which enables you to specify
+            ' an owner window. Otherwise, the message box is owned by the window
+            ' that is currently active.
+            System.Windows.MessageBox.Show(ShownDetail, captionStr,
+                                           System.Windows.MessageBoxButton.OK,
+                                           System.Windows.MessageBoxImage.Error)
+        Else
+            ' Use Me.Owner.
+            System.Windows.MessageBox.Show(Me.Owner, ShownDetail, captionStr,
+                                           System.Windows.MessageBoxButton.OK,
+                                           System.Windows.MessageBoxImage.Error)
+        End If
     End Sub ' ShowExceptionNotice
 
 #End Region ' "Message box utilities"
