@@ -9,7 +9,7 @@ Imports System.Reflection
 Partial Class MainWindow
     ' DEV: These routines are intended as part of the model.
 
-#Region "Basic sub/function model"
+#Region "Basic Sub/Function Model"
     ' DEV: This entire region can be copied into a new project as a supply of
     ' code that can be copied within that project. The copy can be reworked as
     ' chosen, or used to create specialized versions, then used during
@@ -62,9 +62,9 @@ Partial Class MainWindow
     '     End Try
     ' End Sub
 
-#End Region ' "Basic sub/function model"
+#End Region ' "Basic Sub/Function Model"
 
-#Region "Extractable data"
+#Region "Extractable Data"
     ' DEV: This entire region can be copied into a new project as a supply of
     ' code that can be copied into event- and exception-handlers. None of these
     ' routines are intended to be called directly. They are used to separate the
@@ -238,9 +238,9 @@ Partial Class MainWindow
 
     End Sub ' ExtractCancelEventArgs
 
-#End Region ' "Extractable data"
+#End Region ' "Extractable Data"
 
-#Region "Message box utilities"
+#Region "Message Box Utilities"
     ' These are utilities used by various versions of
     ' ShowExceptionMessageBox(<params>).
 
@@ -351,9 +351,9 @@ Partial Class MainWindow
         End If
     End Sub ' ShowExceptionNotice
 
-#End Region ' "Message box utilities"
+#End Region ' "Message Box Utilities"
 
-#Region "Exception message box"
+#Region "Exception Message Box"
 
     ''' <summary>
     ''' Shows details about an <c>Exception</c> that was caught.
@@ -596,6 +596,6 @@ Partial Class MainWindow
 
     End Sub ' ShowExceptionMessageBox
 
-#End Region ' "Exception message box"
+#End Region ' "Exception Message Box"
 
 End Class ' MainWindow

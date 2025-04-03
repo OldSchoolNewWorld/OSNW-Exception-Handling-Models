@@ -5,6 +5,8 @@ Option Infer Off
 
 Partial Class MainWindow
 
+#Region "Window Event Handlers"
+
     Private Sub Do_Window_Initialized(sender As Object, e As EventArgs)
 
         ' DEV: The outer protective wrapper goes here. It ensures that
@@ -203,6 +205,10 @@ Partial Class MainWindow
         End Try
     End Sub ' Do_Window_Closed
 
+#End Region ' "Window Event Handlers"
+
+#Region "Example Window Event Handlers"
+
     Private Sub Do_Test1Button_Click(
       sender As Object, e As RoutedEventArgs)
 
@@ -346,5 +352,7 @@ Partial Class MainWindow
             Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
         End Try
     End Sub ' Do_Test3Button_Click
+
+#End Region ' "Example Window Event Handlers"
 
 End Class ' MainWindow

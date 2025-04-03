@@ -8,7 +8,7 @@ Class MainWindow
     ' REF: Best practices for exceptions
     ' https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions
 
-#Region "Model Events"
+#Region "Exception Model App Events"
     ' DEV: These events are intended as part of the model.
 
     ''' <summary>
@@ -100,9 +100,9 @@ Class MainWindow
         End Try
     End Sub ' CloseButton_Click
 
-#End Region ' "Model Events"
+#End Region ' "Exception Model App Events"
 
-#Region "Example risky routines"
+#Region "Example Risky App Routines"
 
     Private Function GetSqrt(input As System.Double) As System.Double
         If input < 0.0 Then
@@ -137,9 +137,9 @@ Class MainWindow
     End Sub
 
 
-#End Region ' "Example risky routines"
+#End Region ' "Example Risky App Routines"
 
-#Region "Example Events"
+#Region "Example App Events"
     ' DEV: These events are not intended as part of the model. They are included
     ' to support operation of the example.
 
@@ -264,6 +264,6 @@ Class MainWindow
         End Try
     End Sub ' DiceButton_Click
 
-#End Region ' "Example Events"
+#End Region ' "Example App Events"
 
 End Class ' MainWindow
