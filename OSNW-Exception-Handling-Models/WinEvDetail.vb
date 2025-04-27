@@ -37,7 +37,8 @@ Partial Class MainWindow
                 ' Respond to an anticipated exception.
                 Dim CaughtBy As System.Reflection.MethodBase =
                     System.Reflection.MethodBase.GetCurrentMethod
-                Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+                OSNWExceptionHandler.ShowExceptionMessageBox(
+                    CaughtBy, CaughtEx, Me)
 
                 ' Optional rethrow of the caught exception.
                 'Throw
@@ -55,7 +56,7 @@ Partial Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' Do_Window_Initialized
 
@@ -86,7 +87,8 @@ Partial Class MainWindow
                 ' Respond to an anticipated exception.
                 Dim CaughtBy As System.Reflection.MethodBase =
                     System.Reflection.MethodBase.GetCurrentMethod
-                Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+                OSNWExceptionHandler.ShowExceptionMessageBox(
+                    CaughtBy, CaughtEx, Me)
 
                 ' Optional rethrow of the caught exception.
                 'Throw
@@ -104,7 +106,7 @@ Partial Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' Do_Window_Loaded
 
@@ -135,7 +137,8 @@ Partial Class MainWindow
                 ' Respond to an anticipated exception.
                 Dim CaughtBy As System.Reflection.MethodBase =
                     System.Reflection.MethodBase.GetCurrentMethod
-                Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+                OSNWExceptionHandler.ShowExceptionMessageBox(
+                    CaughtBy, CaughtEx, Me)
 
                 ' Optional rethrow of the caught exception.
                 'Throw
@@ -153,7 +156,7 @@ Partial Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' Do_Window_Closing
 
@@ -183,7 +186,8 @@ Partial Class MainWindow
                 ' Respond to an anticipated exception.
                 Dim CaughtBy As System.Reflection.MethodBase =
                     System.Reflection.MethodBase.GetCurrentMethod
-                Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+                OSNWExceptionHandler.ShowExceptionMessageBox(
+                    CaughtBy, CaughtEx, Me)
 
                 ' Optional rethrow of the caught exception.
                 'Throw
@@ -201,7 +205,7 @@ Partial Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' Do_Window_Closed
 
@@ -235,7 +239,8 @@ Partial Class MainWindow
                 ' Respond to an anticipated exception.
                 Dim CaughtBy As System.Reflection.MethodBase =
                     System.Reflection.MethodBase.GetCurrentMethod
-                Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+                OSNWExceptionHandler.ShowExceptionMessageBox(
+                    CaughtBy, CaughtEx, Me)
 
                 ' Optional rethrow of the caught exception.
                 'Throw
@@ -253,7 +258,7 @@ Partial Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' Do_Test1Button_Click
 
@@ -283,7 +288,8 @@ Partial Class MainWindow
                 ' Respond to an anticipated exception.
                 Dim CaughtBy As System.Reflection.MethodBase =
                     System.Reflection.MethodBase.GetCurrentMethod
-                Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+                OSNWExceptionHandler.ShowExceptionMessageBox(
+                    CaughtBy, CaughtEx, Me)
 
                 ' Optional rethrow of the caught exception.
                 'Throw
@@ -301,7 +307,7 @@ Partial Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' Do_Test2Button_Click
 
@@ -331,7 +337,8 @@ Partial Class MainWindow
                 ' Respond to an anticipated exception.
                 Dim CaughtBy As System.Reflection.MethodBase =
                     System.Reflection.MethodBase.GetCurrentMethod
-                Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+                OSNWExceptionHandler.ShowExceptionMessageBox(
+                    CaughtBy, CaughtEx, Me)
 
                 ' Optional rethrow of the caught exception.
                 'Throw
@@ -349,7 +356,7 @@ Partial Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' Do_Test3Button_Click
 

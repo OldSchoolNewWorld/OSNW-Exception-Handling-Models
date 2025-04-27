@@ -25,9 +25,10 @@ Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx, sender, e)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, sender, e, Me)
         End Try
     End Sub ' Window_Initialized
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
     ''' <summary>
     ''' Occurs when the <c>Window</c> is laid out, rendered, and ready for
@@ -44,7 +45,8 @@ Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx, sender, e)
+            OSNWExceptionHandler.ShowExceptionMessageBox(
+                CaughtBy, CaughtEx, sender, e, Me)
         End Try
     End Sub ' Window_Loaded
 
@@ -63,7 +65,8 @@ Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx, sender, e)
+            OSNWExceptionHandler.ShowExceptionMessageBox(
+                CaughtBy, CaughtEx, sender, e, Me)
         End Try
     End Sub ' Window_Closing
 
@@ -80,7 +83,7 @@ Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' Window_Closed
 
@@ -96,7 +99,7 @@ Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' CloseButton_Click
 
@@ -136,7 +139,6 @@ Class MainWindow
 
     End Sub
 
-
 #End Region ' "Example Risky App Routines"
 
 #Region "Example App Events"
@@ -169,7 +171,8 @@ Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx, sender, e)
+            OSNWExceptionHandler.ShowExceptionMessageBox(
+                CaughtBy, CaughtEx, sender, e, Me)
         End Try
     End Sub ' OuterButton_Click
 
@@ -199,14 +202,16 @@ Class MainWindow
                 ' Respond to an anticipated exception.
                 Dim CaughtBy As System.Reflection.MethodBase =
                     System.Reflection.MethodBase.GetCurrentMethod
-                Me.ShowExceptionMessageBox(CaughtBy, CaughtEx, sender, e)
+                OSNWExceptionHandler.ShowExceptionMessageBox(
+                    CaughtBy, CaughtEx, sender, e, Me)
             End Try
 
         Catch CaughtEx As System.Exception
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx, sender, e)
+            OSNWExceptionHandler.ShowExceptionMessageBox(
+                CaughtBy, CaughtEx, sender, e, Me)
         End Try
     End Sub ' InnerButton_Click
 
@@ -238,10 +243,12 @@ Class MainWindow
                 If CaughtEx.Data.Count > 0 Then
                     ' Data is included.
                     Dim DataMessage As System.String =
-                        MainWindow.GetDataMessage(CaughtEx)
-                    Me.ShowExceptionMessageBox(CaughtBy, CaughtEx, DataMessage)
+                        OSNWExceptionHandler.GetDataMessage(CaughtEx)
+                    OSNWExceptionHandler.ShowExceptionMessageBox(
+                        CaughtBy, CaughtEx, DataMessage, Me)
                 Else
-                    Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+                    OSNWExceptionHandler.ShowExceptionMessageBox(
+                        CaughtBy, CaughtEx, Me)
                 End If
 
                 ' Optional rethrow of the caught exception.
@@ -260,9 +267,10 @@ Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            Me.ShowExceptionMessageBox(CaughtBy, CaughtEx)
+            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' DiceButton_Click
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 #End Region ' "Example App Events"
 
