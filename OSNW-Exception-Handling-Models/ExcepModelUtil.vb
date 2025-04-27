@@ -5,12 +5,7 @@ Option Infer Off
 
 Imports System.Reflection
 
-
 Partial Class MainWindow
-
-
-
-
 
     ''' <summary>
     ''' Represents a <c>Class</c> that supplies functionality to respond to
