@@ -25,10 +25,10 @@ Class MainWindow
             ' Report the unexpected exception.
             Dim CaughtBy As System.Reflection.MethodBase =
                 System.Reflection.MethodBase.GetCurrentMethod()
-            OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, sender, e, Me)
+            OSNWExceptionHandler.ShowExceptionMessageBox(
+                CaughtBy, CaughtEx, sender, e, Me)
         End Try
     End Sub ' Window_Initialized
-    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
     ''' <summary>
     ''' Occurs when the <c>Window</c> is laid out, rendered, and ready for
@@ -270,7 +270,6 @@ Class MainWindow
             OSNWExceptionHandler.ShowExceptionMessageBox(CaughtBy, CaughtEx, Me)
         End Try
     End Sub ' DiceButton_Click
-    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 #End Region ' "Example App Events"
 
